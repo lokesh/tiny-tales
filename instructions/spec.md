@@ -19,7 +19,7 @@ Technical Requirements:
   - Once the user enters text into the input, update the button text to 'Guess'
   - When the user clicks 'Guess', validate the input.
   - If it is wrong, clear the input and update the summary for the current book to make it one word longer.
-  - If it is correct, show a Success Modal with a 'Next' button.
+  - If it is correct, show a Next Modal with a 'Next' button.
   - When the user clicks 'Next', clear the input and update the currently selected book to the next one.
     - If the user is on the last book, show the Share Modal.
 2. Modal: Title Modal

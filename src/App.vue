@@ -4,19 +4,14 @@ import GameScreen from '@/components/GameScreen.vue'
 </script>
 
 <template>
-  <div id="app">
-    <Debugger />
+  <div class="app">
+    <Debugger v-if="false" />
     <GameScreen />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.app {
+  height: 100vh;
 }
 </style>

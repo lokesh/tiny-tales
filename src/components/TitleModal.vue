@@ -18,7 +18,7 @@
 
 
 <script setup lang="ts">
-import TinyModal from './TinyModal.vue';
+import TinyModal from '@/components/TinyModal.vue';
 import { TITLE_MODAL } from '@/constants/modals'
 import { useGameStore } from '@/stores/gameStore'
 

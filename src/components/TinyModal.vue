@@ -104,7 +104,7 @@ function onCloseClick() {
   max-width: var(--modal-max);
   padding: 32px;
   color: var(--color-bg);
-  background-color: black;
+  background-color: white;
   border: var(--border);
   border-radius: var(--radius);
   text-align: center;
