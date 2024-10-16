@@ -1,13 +1,22 @@
-<script setup lang="ts">
-defineEmits(['start'])
-</script>
+<!-- <script setup>
+import Modal from '@/components/modals/Modal.vue';
+import { TIMES_UP_MODAL } from '@/constants/modals';
+import { useGameStore } from '@/stores/game'
+
+const s = useGameStore();
+</script> -->
+
 
 <template>
-  <div class="modal">
-    <h1>Tiny Tales</h1>
+  <TinyModal
+    :visible="s.modal === TIMES_UP_MODAL"  
+  >
+    <template #title>
+      Tiny Tales
+    </template>
     <p>A game by Lokesh Dhakar</p>
     <button @click="$emit('start')">Start</button>
-  </div>
+  </TinyModal>
 </template>
 
 <style scoped>
@@ -15,3 +24,14 @@ defineEmits(['start'])
   /* Add your modal styles here */
 }
 </style>
+
+
+<script setup lang="ts">
+import TinyModal from './TinyModal.vue';
+import { useGameStore } from '@/stores/gameStore'
+
+const s = useGameStore();
+
+defineEmits(['start'])
+</script>
+
