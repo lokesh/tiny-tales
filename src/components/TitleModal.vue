@@ -1,12 +1,3 @@
-<!-- <script setup>
-import Modal from '@/components/modals/Modal.vue';
-import { TIMES_UP_MODAL } from '@/constants/modals';
-import { useGameStore } from '@/stores/game'
-
-const s = useGameStore();
-</script> -->
-
-
 <template>
   <TinyModal
     :visible="s.modal === TIMES_UP_MODAL"  
