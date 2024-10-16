@@ -1,107 +1,79 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { Book } from '@/types'
+import books from '@/data/books.json'
+import { TITLE_MODAL } from '@/constants/modals'
+
+// Update the type definition for Books
+type Books = {
+  [title: string]: string[]
+}
 
 export const useGameStore = defineStore('game', () => {
-  const books = ref<Book[]>([
-    {
-      title: "To Kill a Mockingbird",
-      author: "Harper Lee",
-      summary: "A young girl's coming-of-age story in the American South during the 1930s. Her father, a lawyer, defends a black man accused of a terrible crime."
-    },
-    {
-      title: "1984",
-      author: "George Orwell",
-      summary: "In a totalitarian future society, a man struggles to maintain his individuality under an oppressive government that controls every aspect of people's lives."
-    },
-    {
-      title: "Pride and Prejudice",
-      author: "Jane Austen",
-      summary: "A witty romance set in Georgian England, following the relationship between the spirited Elizabeth Bennet and the proud Mr. Darcy as they overcome their own flaws and societal expectations."
-    },
-    {
-      title: "The Great Gatsby",
-      author: "F. Scott Fitzgerald",
-      summary: "A mysterious millionaire's obsession with his lost love leads to tragedy in this critique of the American Dream set in the Roaring Twenties."
-    },
-    {
-      title: "One Hundred Years of Solitude",
-      author: "Gabriel García Márquez",
-      summary: "A multi-generational saga of the Buendía family, blending reality and fantasy in the fictional town of Macondo, exploring themes of love, war, and the cyclical nature of history."
-    },
-    {
-      title: "The Catcher in the Rye",
-      author: "J.D. Salinger",
-      summary: "A teenage boy's experiences in New York City after being expelled from his prep school, dealing with themes of alienation, identity, and the loss of innocence."
-    },
-    {
-      title: "The Handmaid's Tale",
-      author: "Margaret Atwood",
-      summary: "In a dystopian future, a woman is forced to live as a concubine under a fundamentalist theocratic dictatorship in the former United States."
-    },
-    {
-      title: "The Alchemist",
-      author: "Paulo Coelho",
-      summary: "A young Andalusian shepherd's journey to find his destiny leads him on an adventure across the Egyptian desert, teaching him about the essential wisdom of listening to his heart."
-    },
-    {
-      title: "Brave New World",
-      author: "Aldous Huxley",
-      summary: "A futuristic society where humans are genetically bred and pharmaceutically anesthetized to passively serve a ruling order. A savage visitor challenges the system."
-    },
-    {
-      title: "The Hunger Games",
-      author: "Suzanne Collins",
-      summary: "In a dystopian future, a young girl volunteers to take her sister's place in a televised battle to the death between children from different districts of a post-apocalyptic nation."
-    }
-  ])
-  const currentBookIndex = ref(0)
-  const summaryWordCount = ref(1)
-  const showTitleModal = ref(true)
-  const showSuccessModal = ref(false)
-  const showShareModal = ref(false)
+  const allBooks = ref<Books>(books)
+  const currentBook = ref<string | null>(null)
+  const guessedCorrectly = ref(false)
+  const currentHintIndex = ref(0)
+  const modal = ref<string>(TITLE_MODAL)
 
-  const currentBook = computed(() => books.value[currentBookIndex.value])
+  const availableBooks = computed(() => Object.keys(allBooks.value))
+
+  // New computed property for currentSummary
   const currentSummary = computed(() => {
-    const words = currentBook.value.summary.split(' ')
-    return words.slice(0, summaryWordCount.value).join(' ')
+    if (currentBook.value) {
+      const summaries = allBooks.value[currentBook.value]
+      return summaries[currentHintIndex.value] || null
+    }
+    return null
   })
 
-  const startGame = () => {
-    showTitleModal.value = false
+  const selectRandomBook = () => {
+    const bookTitles = availableBooks.value
+    const randomIndex = Math.floor(Math.random() * bookTitles.length)
+    currentBook.value = bookTitles[randomIndex]
   }
 
-  const checkGuess = (guess: string) => {
-    if (guess.toLowerCase() === currentBook.value.title.toLowerCase()) {
-      showSuccessModal.value = true
-    } else {
-      summaryWordCount.value++
-    }
+  const checkGuess = (guessedTitle: string) => {
+    guessedCorrectly.value = guessedTitle === currentBook.value
+    return guessedCorrectly.value
   }
 
   const getHint = () => {
-    summaryWordCount.value++
-  }
+    if (!currentBook.value) return null
 
-  const nextBook = () => {
-    showSuccessModal.value = false
-    currentBookIndex.value++
-    summaryWordCount.value = 1
+    const hint = allBooks.value[currentBook.value][currentHintIndex.value]
 
-    if (currentBookIndex.value >= books.value.length) {
-      showShareModal.value = true
+    if (hint) {
+      currentHintIndex.value = Math.min(currentHintIndex.value + 1, 11)
+      return hint
     }
+
+    return null
   }
+
+  const closeModal = () => {
+    modal.value = ''
+  }
+
+  const resetGame = () => {
+    currentBook.value = null
+    guessedCorrectly.value = false
+    currentHintIndex.value = 0
+    selectRandomBook()
+  }
+
+  // Initialize the game
+  selectRandomBook()
 
   return {
-    currentSummary,
-    showTitleModal,
-    showSuccessModal,
-    showShareModal,
+    closeModal,
     currentBook,
-    startGame,
+    currentSummary,
+    currentHintIndex,
+    guessedCorrectly,
+    availableBooks,
     checkGuess,
+    resetGame,
     getHint,
-    nextBook,
+    modal,
   }
 })

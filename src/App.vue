@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import Debugger from '@/components/Debugger.vue'
 import GameScreen from '@/components/GameScreen.vue'
 </script>
 
 <template>
   <div id="app">
+    <Debugger />
     <GameScreen />
   </div>
 </template>

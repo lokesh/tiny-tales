@@ -1,6 +1,6 @@
 <template>
   <TinyModal
-    :visible="s.modal === TIMES_UP_MODAL"  
+    :visible="s.modal === TITLE_MODAL"
   >
     <template #title>
       Tiny Tales
@@ -19,6 +19,7 @@
 
 <script setup lang="ts">
 import TinyModal from './TinyModal.vue';
+import { TITLE_MODAL } from '@/constants/modals'
 import { useGameStore } from '@/stores/gameStore'
 
 const s = useGameStore();

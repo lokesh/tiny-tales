@@ -31,7 +31,7 @@
 
         </slot>
 
-        <div class="button-row">
+        <div class="button-row" v-if="false">
           <div
             class="icon-button"
             @click="onCloseClick"
