@@ -5,14 +5,17 @@
     <template #title>
       Tiny Tales
     </template>
-    <p>A game by Lokesh Dhakar</p>
-    <button class="button" @click="$emit('start')">Start</button>
+    <div class="subtitle">A small game by Lokesh Dhakar</div>
+    <button class="button primary-button" @click="$emit('start')">Start</button>
   </TinyModal>
 </template>
 
 <style scoped>
-.modal {
-  /* Add your modal styles here */
+.subtitle {
+  font-family: var(--font-family-display);
+  font-size: 2rem;
+  color: var(--color-text-light);
+  margin-bottom: 0.25rem;
 }
 </style>
 
@@ -26,4 +29,5 @@ const s = useGameStore();
 
 defineEmits(['start'])
 </script>
+
 

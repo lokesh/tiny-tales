@@ -6,21 +6,24 @@
   --font-weight: 400;
 
   --color-text: #000;
+  --color-text-light: #b5b5ad;
   --color-bg: #FFFFFA;
   --color-bg-dark: #F1F1EB;
   --color-bg-darker: #E6E6E0;
   --color-bg-darkest: #b5b5ad;
 
-  --color-btn-bg: var(--color-bg-dark);
-  --color-input-bg: var(--color-bg-darker);
-  --color-input-placeholder: var(--color-bg-darkest);
+  --button-color-bg: var(--color-bg-dark);
+  --input-color-bg: var(--color-bg-darker);
+  --input-placeholder-color: var(--color-bg-darkest);
   
+  --modal-color-bg: #fff;
+
   --radius: 12px;
 
   --radius-btn: var(--radius);
 
-
-  
+  /* LAYOUT */
+  --modal-max-width: min(80vw, 320px);
 }
 
 * {
@@ -63,17 +66,25 @@ p {
   border: none;
   font-size: 1rem;
   color: var(--color-text);
-  background-color: var(--color-bg-dark);
+  background-color: var(--button-color-bg);
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
   cursor: pointer;
+}
+
+.button.primary-button {
+  font-size: 1.25rem;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  letter-spacing: 0.04em;
+  
 }
 
 .input {
   border: none;
   font-size: 1rem;
   color: var(--color-text);
-  background-color: var(--color-bg-dark);
+  background-color: var(--input-color-bg);
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
 }
@@ -87,7 +98,7 @@ p {
 
 /* Add styles for input placeholder */
 .input::placeholder {
-  color: var(--color-input-placeholder);
+  color: var(--input-placeholder-color);
 }
 
 /* a,

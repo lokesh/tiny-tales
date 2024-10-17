@@ -79,7 +79,7 @@ function onCloseClick() {
   position: absolute;
   top: 0;
   left: 0;
-  background-color:  rgb(254, 254, 240, 0.8);
+  background-color:  rgba(181, 181, 173, 0.8);
   width: 100%;
   height: 100%;
 }
@@ -101,11 +101,10 @@ function onCloseClick() {
 }
 
 .modal {
-  max-width: var(--modal-max);
+  max-width: var(--modal-max-width);
   padding: 1rem;
-  /* color: var(--color-bg); */
-  background-color: var(--color-bg-dark);
-  border: 1px solid var(--color-bg-darkest);
+  background-color: var(--modal-color-bg);
+  border: 1px solid var(--color-bg-dark);
   border-radius: var(--radius);
   /* text-align: center; */
 }
@@ -113,6 +112,7 @@ function onCloseClick() {
 .modal-title {
   font-family: var(--font-family-display);
   font-size: 3rem;
+  line-height: 1;
 }
 .button-row {
   display: flex;
