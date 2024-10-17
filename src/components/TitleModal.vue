@@ -6,7 +6,7 @@
       Tiny Tales
     </template>
     <p>A game by Lokesh Dhakar</p>
-    <button @click="$emit('start')">Start</button>
+    <button class="button" @click="$emit('start')">Start</button>
   </TinyModal>
 </template>
 

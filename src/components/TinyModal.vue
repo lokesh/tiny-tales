@@ -102,15 +102,16 @@ function onCloseClick() {
 
 .modal {
   max-width: var(--modal-max);
-  padding: 32px;
-  color: var(--color-bg);
-  background-color: white;
-  border: var(--border);
+  padding: 1rem;
+  /* color: var(--color-bg); */
+  background-color: var(--color-bg-dark);
+  border: 1px solid var(--color-bg-darkest);
   border-radius: var(--radius);
-  text-align: center;
+  /* text-align: center; */
 }
 
 .modal-title {
+  font-family: var(--font-family-display);
   font-size: 3rem;
 }
 .button-row {

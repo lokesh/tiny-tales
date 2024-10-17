@@ -13,7 +13,7 @@ export const useGameStore = defineStore('game', () => {
   const currentBook = ref<string | null>(null)
   const guessedCorrectly = ref(false)
   const currentHintIndex = ref(0)
-  const modal = ref<string>('')
+  const modal = ref<string>(TITLE_MODAL)
   const currentRound = ref(1)
   const totalRounds = ref(10) // Adjust this value as needed
 

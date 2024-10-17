@@ -8,14 +8,19 @@
   --color-text: #000;
   --color-bg: #FFFFFA;
   --color-bg-dark: #F1F1EB;
-  
   --color-bg-darker: #E6E6E0;
+  --color-bg-darkest: #b5b5ad;
+
   --color-btn-bg: var(--color-bg-dark);
   --color-input-bg: var(--color-bg-darker);
+  --color-input-placeholder: var(--color-bg-darkest);
   
   --radius: 12px;
 
   --radius-btn: var(--radius);
+
+
+  
 }
 
 * {
@@ -42,6 +47,16 @@ body {
   padding: 0;
 }
 
+/* TYPOGRAPHY */
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
 /* FORMS */
 
 .button {
@@ -61,6 +76,18 @@ body {
   background-color: var(--color-bg-dark);
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
+}
+
+/* Add focus styles for form elements */
+.button:focus,
+.input:focus {
+  outline: 2px solid black;
+  outline-offset: 2px;
+}
+
+/* Add styles for input placeholder */
+.input::placeholder {
+  color: var(--color-input-placeholder);
 }
 
 /* a,
