@@ -1,19 +1,31 @@
 /* @import './base.css'; */
 
 :root {
-  --font-family: 'Inter', sans-serif;
-  --font-weight: bold;
+  --font-family: 'Maison Neue', sans-serif;
+  --font-family-display: 'ITC Clearface Std', serif;
+  --font-weight: 400;
 
-  --color-text: #fff;
-  --color-bg: #000;
-
+  --color-text: #000;
+  --color-bg: #FFFFFA;
+  --color-bg-dark: #F1F1EB;
+  
+  --color-bg-darker: #E6E6E0;
+  --color-btn-bg: var(--color-bg-dark);
+  --color-input-bg: var(--color-bg-darker);
+  
   --radius: 12px;
+
+  --radius-btn: var(--radius);
 }
 
 * {
+  box-sizing: border-box;
+}
+
+body, button, input, textarea {
   font-family: var(--font-family);
   font-weight: var(--font-weight);
-  box-sizing: border-box;
+
 }
 
 body {
@@ -30,7 +42,28 @@ body {
   padding: 0;
 }
 
-a,
+/* FORMS */
+
+.button {
+  border: none;
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-bg-dark);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.input {
+  border: none;
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-bg-dark);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+}
+
+/* a,
 .green {
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
@@ -55,4 +88,4 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
-}
+} */

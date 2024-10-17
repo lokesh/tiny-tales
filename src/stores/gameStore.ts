@@ -14,6 +14,8 @@ export const useGameStore = defineStore('game', () => {
   const guessedCorrectly = ref(false)
   const currentHintIndex = ref(0)
   const modal = ref<string>('')
+  const currentRound = ref(1)
+  const totalRounds = ref(10) // Adjust this value as needed
 
   const availableBooks = computed(() => Object.keys(allBooks.value))
 
@@ -75,5 +77,7 @@ export const useGameStore = defineStore('game', () => {
     resetGame,
     getHint,
     modal,
+    currentRound,
+    totalRounds,
   }
 })

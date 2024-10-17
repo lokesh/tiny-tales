@@ -1,12 +1,11 @@
 <template>
   <div class="summary">
     <span 
-      v-for="(word, index) in coloredWords" 
+      v-for="(word, index) in words" 
       :key="index" 
       class="word"
-      :style="{ backgroundColor: word.color }"
     >
-      {{ word.text }}
+      {{ word }}
     </span>
   </div>
 </template>
@@ -31,41 +30,27 @@ const props = defineProps<{
   content: string
 }>()
 
-// Function to get a random color different from the previous one
-const getRandomColor = (previousColor?: string): string => {
-  let color;
-  do {
-    color = colors[Math.floor(Math.random() * colors.length)];
-  } while (color === previousColor);
-  return color;
-}
-
-// Computed property to split the content into words and assign colors
-const coloredWords = computed(() => {
-  const words = props.content.split(/\s+/);
-  let previousColor: string | undefined;
-
-  return words.map(word => {
-    const color = getRandomColor(previousColor);
-    previousColor = color;
-    return { text: word, color };
-  });
-})
+// Computed property to split the content into words
+const words = computed(() => props.content.split(/\s+/))
 </script>
 
 <style scoped>
 .summary {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  column-gap: 0.8rem;
+  line-height: 1.1;
+  /* row-gap: 0.5rem; */
+  font-size: 3rem;
+  font-family: var(--font-family-display);
 }
 
 .word {
-  font-size: 3rem;
-  font-weight: bold;
-  color: var(--color-bg);
-  display: inline-block;
-  padding: 0.25rem 0.4rem;
-  border-radius: 0.25rem;
+
+  /* font-weight: bold; */
+  /* color: var(--color-bg); */
+  /* display: inline-block; */
+  /* padding: 0.25rem 0.4rem; */
+  /* border-radius: 0.25rem; */
 }
 </style>

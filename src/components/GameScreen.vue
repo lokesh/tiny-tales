@@ -1,10 +1,14 @@
-
 <template>
   <div class="game-screen">
-    <Summary :content="gameStore.currentSummary" />
+    
+    <div class="top">
+      <TopBar />
+      <Summary class="summary":content="gameStore.currentSummary" />
+    </div>
+    
     <div class="footer">
       <input
-        class="guess-input"
+        class="input guess-input"
         v-model="userInput"
         placeholder="What book is it?"
         @keyup.enter="handleGuess"
@@ -15,20 +19,21 @@
     <TitleModal @start="gameStore.closeModal" />
 
     <NextModal
-      :correct-title="gameStore.currentBook.title"
+      :correct-title="gameStore.currentBook?.title ?? ''"
       @next="handleNext"
     />
     <ShareModal />
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useGameStore } from '@/stores/gameStore'
 import TitleModal from './TitleModal.vue'
 import Summary from './Summary.vue'
-import { TITLE_MODAL, SHARE_MODAL, NEXT_MODAL } from '@/constants/modals'
 import NextModal from './NextModal.vue'
 import ShareModal from './ShareModal.vue'
+import TopBar from './TopBar.vue'
 
 const gameStore = useGameStore()
 const userInput = ref('')
@@ -55,7 +60,11 @@ const handleNext = () => {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  padding-top: 1rem
+  padding: 0.5rem
+}
+
+.summary {
+  margin-top: 2rem;
 }
 
 .footer {
@@ -65,13 +74,12 @@ const handleNext = () => {
   gap: 1rem;
 }
 
-.guess-input {
+/* .guess-input {
   width: 100%;
   font-size: 2rem;
   padding: 0.25em;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
+} */
 </style>
